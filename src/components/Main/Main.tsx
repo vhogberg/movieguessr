@@ -7,7 +7,7 @@ export default function Main() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   // movies already used (just id)
-  const [usedMovies, setUsedMovies] = useState<Movie[]>([]);
+  const [usedMovies] = useState<Movie[]>([]);
 
   // loading state (optional but recommended)
   const [loading, setLoading] = useState(true);
