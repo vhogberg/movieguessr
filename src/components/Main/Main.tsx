@@ -46,16 +46,14 @@ export default function Main() {
       <p>Loaded {movies.length} movies!</p>
       <p>Used movies: {usedMovies.length}</p>
 
-      <p>Click on a movie to start guessing!</p>
-
-      <ul>
+      
         {movies.map(movie => (
-          <li key={movie.id}>
+          <div key={movie.id}>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
             <p>{movie.title} ({new Date(movie.release_date).getFullYear()})</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      
     </main>
   );
 }
