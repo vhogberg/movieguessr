@@ -10,10 +10,6 @@
   min-height: 100vh;
 }
 
-main {
-  padding-bottom: 2.5rem; /* Space for footer */
-}
-
 img {
   max-width: 300px;
   height: auto;

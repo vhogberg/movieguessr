@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { Movie } from "./movie";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -15,15 +16,7 @@ const decadeConfig = [
   { start: 2020, end: 2024, pages: 4 }, // ~80 movies
 ];
 
-export interface Movie {
-  id: number;
-  title: string;
-  release_date: string;
-  popularity: number;
-  poster_path: string;
-  vote_average: number;
-  overview: string;
-}
+
 
 export async function fetchAllTimePopularMovies(): Promise<Movie[]> {
   const allMovies: Movie[] = [];
