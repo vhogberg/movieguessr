@@ -11,8 +11,31 @@ export interface Movie {
   
   // optional, not always available
   tagline?: string;
-  cast?: [string];
+  cast?: string[];
   director?: string;
   budget?: number;
   revenue?: number;
+}
+
+interface TMDbCastMember {
+  name: string;
+}
+
+interface TMDbCrewMember {
+  job: string;
+  name: string;
+}
+
+interface TMDbCredits {
+  cast: TMDbCastMember[];
+  crew: TMDbCrewMember[];
+}
+
+export interface TMDbMovieDetails {
+  id: number;
+  title: string;
+  tagline: string;
+  budget: number;
+  revenue: number;
+  credits: TMDbCredits;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchAllTimePopularMovies } from "../../utils/api";
+import { fetchAllTimePopularMovies, fetchMovieDetails } from "../../utils/api";
 import type { Movie } from "../../utils/movie";
+import MovieCard from "../MovieCard/MovieCard";
 
 export default function Main() {
   // movies to guess
@@ -30,6 +31,22 @@ export default function Main() {
     loadMovies();
   }, []);
 
+  const currentMovie = movies[currentIndex];
+
+  // Fetch details only for the current movie
+  useEffect(() => {
+    if (!currentMovie) return; // nothing to fetch yet
+    if (currentMovie.tagline) return; // already fetched details
+
+    fetchMovieDetails(currentMovie.id).then((details) => {
+      setMovies((prev) =>
+        prev.map((m) =>
+          m.id === currentMovie.id ? { ...m, ...details } : m
+        )
+      );
+    });
+  }, [currentMovie]);
+
   if (loading) {
     return (
       <main>
@@ -39,8 +56,6 @@ export default function Main() {
     );
   }
 
-  const currentMovie = movies[currentIndex];
-
   return (
     <main>
       <h1>Welcome to MovieGuessr!</h1>
@@ -49,18 +64,11 @@ export default function Main() {
       <p>Used movies: {usedMovies.length}</p>
 
       {currentMovie && (
-        <div>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`}
-            alt="Movie poster"
-          />
-          <p>
-            {currentMovie.title} (
-            {new Date(currentMovie.release_date).getFullYear()})
-          </p>
-        </div>
+        <MovieCard
+          movie={currentMovie}
+        />
       )}
-
+      
       <button
         onClick={() =>
           setCurrentIndex((prev) => (prev + 1 < movies.length ? prev + 1 : 0))
