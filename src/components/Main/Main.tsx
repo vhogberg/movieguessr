@@ -9,7 +9,7 @@ export default function Main() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   // movies already used (just id)
-  const [usedMovies] = useState<Movie[]>([]);
+  const [usedMovies, setUsedMovies] = useState<Movie[]>([]);
 
   // loading state
   const [loading, setLoading] = useState(true);
@@ -77,9 +77,11 @@ export default function Main() {
       <br />
       <br />
       <button
-        onClick={() =>
-          setCurrentIndex((prev) => (prev + 1 < movies.length ? prev + 1 : 0))
-        }
+        onClick={() => {
+          usedMovies.push(currentMovie);
+          setUsedMovies([...usedMovies]);
+          setCurrentIndex((prev) => (prev + 1 < movies.length ? prev + 1 : 0));
+        }}
       >
         Skip Movie
       </button>

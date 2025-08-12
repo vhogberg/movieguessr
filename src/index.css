@@ -16,3 +16,28 @@
 a {
   color: white;
 }
+
+button {
+  background: #ce2527;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.5s ease;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: #d1393b;
+}
+
+button:active {
+  transform: scale(0.95);
+}
