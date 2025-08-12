@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchAllTimePopularMovies, fetchMovieDetails } from "../../utils/api";
 import type { Movie } from "../../utils/movie";
+import GuessingField from "../GuessingField/GuessingField";
 import MovieCard from "../MovieCard/MovieCard";
 
 export default function Main() {
@@ -69,12 +70,18 @@ export default function Main() {
         />
       )}
       
+      
+
+      <GuessingField/>
+
+      <br />
+      <br />
       <button
         onClick={() =>
           setCurrentIndex((prev) => (prev + 1 < movies.length ? prev + 1 : 0))
         }
       >
-        Next Movie
+        Skip Movie
       </button>
     </main>
   );
