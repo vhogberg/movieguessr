@@ -41,12 +41,12 @@ export default function Main() {
 
     fetchMovieDetails(currentMovie.id).then((details) => {
       setMovies((prev) =>
-        prev.map((m) =>
-          m.id === currentMovie.id ? { ...m, ...details } : m
-        )
+        prev.map((m) => (m.id === currentMovie.id ? { ...m, ...details } : m))
       );
     });
   }, [currentMovie]);
+
+  const [blurLevel, setBlurLevel] = useState(5);
 
   if (loading) {
     return (
@@ -64,23 +64,24 @@ export default function Main() {
       <p>Loaded {movies.length} movies!</p>
       <p>Used movies: {usedMovies.length}</p>
 
-      {currentMovie && (
-        <MovieCard
-          movie={currentMovie}
-        />
-      )}
-      
-      
+      {currentMovie && <MovieCard movie={currentMovie} blurLevel={blurLevel} />}
 
-      <GuessingField/>
+      <GuessingField />
 
       <br />
       <br />
+      <button onClick={() => setBlurLevel(Math.max(0, blurLevel - 1))}>
+        Test - Unblur Poster
+      </button>
+      <br />
+      <br />
+
       <button
         onClick={() => {
           usedMovies.push(currentMovie);
           setUsedMovies([...usedMovies]);
           setCurrentIndex((prev) => (prev + 1 < movies.length ? prev + 1 : 0));
+          setBlurLevel(5); // reset blur level for the next movie
         }}
       >
         Skip Movie

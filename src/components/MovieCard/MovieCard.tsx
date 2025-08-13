@@ -1,30 +1,60 @@
 import type { Movie } from "../../utils/movie";
 import "./MovieCard.css";
 
-export default function MovieCard({ movie }: { movie: Movie }) {
+export default function MovieCard({
+  movie,
+  blurLevel,
+}: {
+  movie: Movie;
+  blurLevel: number;
+}) {
   return (
     <div className="movie-card">
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={`${movie.title} poster`}
+        className={`poster-blur-level-${blurLevel}`}
       />
 
-      {movie.tagline && <p>Tagline: {movie.tagline}</p>}
+      {movie.tagline && (
+        <p>
+          <span>Tagline:</span> {movie.tagline}
+        </p>
+      )}
 
       {movie.release_date && (
-        <p>Release Date: {new Date(movie.release_date).getFullYear()}</p>
+        <p>
+          <span>Release Date:</span>{" "}
+          {new Date(movie.release_date).getFullYear()}
+        </p>
       )}
 
       {movie.vote_average !== undefined && (
-        <p>Rating (TMDb): {movie.vote_average.toFixed(1)}/10</p>
+        <p>
+          <span>Rating (TMDb):</span> {movie.vote_average.toFixed(1)}/10
+        </p>
       )}
 
-      {movie.cast != undefined && <p>Cast: {movie.cast.join(", ")}.</p>}
+      {movie.cast != undefined && (
+        <p>
+          <span>Cast:</span> {movie.cast.join(", ")}.
+        </p>
+      )}
 
-      {movie.director && <p>Director: {movie.director}.</p>}
+      {movie.director && (
+        <p>
+          <span>Director: </span> {movie.director}.
+        </p>
+      )}
 
-      {movie.overview && <p>Synopsis: {movie.overview}</p>}
+      {movie.overview && (
+        <p>
+          <span>Synopsis: </span>
+          {movie.overview}
+        </p>
+      )}
 
+      <span>Financials:</span>
       {((movie.budget ?? 0) > 0 || (movie.revenue ?? 0) > 0) && (
         <p>
           {(movie.budget ?? 0) > 0 &&
