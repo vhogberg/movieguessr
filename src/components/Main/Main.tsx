@@ -51,15 +51,58 @@ export default function Main() {
   const [blurLevel, setBlurLevel] = useState(5);
 
   function checkGuess(guess: string) {
-    if (
-      guess.trim().toLowerCase() === currentMovie.title.toLowerCase() ||
-      guess.trim().toLowerCase() === currentMovie.original_title.toLowerCase()
-    ) {
+    if (isCloseMatch(guess, currentMovie.title)) {
       alert("Correct!");
       setBlurLevel(0);
     } else {
       alert("Wrong!");
     }
+  }
+
+  function isCloseMatch(guess: string, answer: string, tolerance = 2): boolean {
+    const normalize = (str: string) =>
+      str
+        .toLowerCase()
+        .trim()
+        .replace(/\bthe\b/g, "") // remove "the"
+        .replace(/\s+/g, " ")
+        .replace(/[^\p{L}\p{N}\s]/gu, "") // strip punctuation
+        .replace(/\bii\b/g, "2") // roman numeral 2
+        .replace(/\biii\b/g, "3") // roman numeral 3
+        .replace(/\biv\b/g, "4")
+        .replace(/\bi\b/g, "1");
+
+    const normGuess = normalize(guess);
+    const normAnswer = normalize(answer);
+
+    // Direct match
+    if (normGuess === normAnswer) return true;
+
+    // Check typo tolerance
+    return levenshteinDistance(normGuess, normAnswer) <= tolerance;
+  }
+
+  function levenshteinDistance(a: string, b: string): number {
+    const matrix: number[][] = [];
+
+    for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b[i - 1] === a[j - 1]) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1, // substitution
+            matrix[i][j - 1] + 1, // insertion
+            matrix[i - 1][j] + 1 // deletion
+          );
+        }
+      }
+    }
+
+    return matrix[b.length][a.length];
   }
 
   if (loading) {
@@ -91,15 +134,10 @@ export default function Main() {
 
             <button
               onClick={() => {
-                usedMovies.push(currentMovie);
-                setUsedMovies([...usedMovies]);
-                setCurrentIndex((prev) =>
-                  prev + 1 < movies.length ? prev + 1 : 0
-                );
-                setBlurLevel(5); // reset blur level for the next movie
+                setBlurLevel(0);
               }}
             >
-              Skip Movie
+              Give Up
             </button>
           </>
         ) : (
