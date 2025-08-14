@@ -4,6 +4,8 @@ import type { Movie } from "../../utils/movie";
 import GuessingField from "../GuessingField/GuessingField";
 import MovieCard from "../MovieCard/MovieCard";
 
+import "./Main.css";
+
 export default function Main() {
   // movies to guess
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -68,24 +70,24 @@ export default function Main() {
 
       <GuessingField />
 
-      <br />
-      <br />
-      <button onClick={() => setBlurLevel(Math.max(0, blurLevel - 1))}>
-        Test - Unblur Poster
-      </button>
-      <br />
-      <br />
+      <div className="game-control-buttons">
+        <button onClick={() => setBlurLevel(Math.max(1, blurLevel - 1))}>
+          Reveal Clue
+        </button>
 
-      <button
-        onClick={() => {
-          usedMovies.push(currentMovie);
-          setUsedMovies([...usedMovies]);
-          setCurrentIndex((prev) => (prev + 1 < movies.length ? prev + 1 : 0));
-          setBlurLevel(5); // reset blur level for the next movie
-        }}
-      >
-        Skip Movie
-      </button>
+        <button
+          onClick={() => {
+            usedMovies.push(currentMovie);
+            setUsedMovies([...usedMovies]);
+            setCurrentIndex((prev) =>
+              prev + 1 < movies.length ? prev + 1 : 0
+            );
+            setBlurLevel(5); // reset blur level for the next movie
+          }}
+        >
+          Skip Movie
+        </button>
+      </div>
     </main>
   );
 }

@@ -1,0 +1,9 @@
+.movie-clue-label {
+    color: #cc3437;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.movie-clue-content-blurred {
+    filter: blur(4px);
+}

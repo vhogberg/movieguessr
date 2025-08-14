@@ -1,5 +1,6 @@
 import type { Movie } from "../../utils/movie";
 import "./MovieCard.css";
+import MovieClue from "./MovieClue/MovieClue";
 
 export default function MovieCard({
   movie,
@@ -17,52 +18,67 @@ export default function MovieCard({
       />
 
       {movie.tagline && (
-        <p>
-          <span>Tagline:</span> {movie.tagline}
-        </p>
-      )}
-
-      {movie.release_date && (
-        <p>
-          <span>Release Date:</span>{" "}
-          {new Date(movie.release_date).getFullYear()}
-        </p>
+        <MovieClue
+          clueLabel="Tagline:"
+          clueContent={movie.tagline}
+          isHidden={false} // Always show tagline
+        />
       )}
 
       {movie.vote_average !== undefined && (
-        <p>
-          <span>Rating (TMDb):</span> {movie.vote_average.toFixed(1)}/10
-        </p>
+        <MovieClue
+          clueLabel="Rating:"
+          clueContent={`${movie.vote_average.toFixed(1)}/10`}
+          isHidden={false} // Always show rating
+        />
+      )}
+
+      {movie.release_date && (
+        <MovieClue
+          clueLabel="Release Date:"
+          clueContent={new Date(movie.release_date).toLocaleDateString()}
+          isHidden={false} // Always show release date
+        />
       )}
 
       {movie.cast != undefined && (
-        <p>
-          <span>Cast:</span> {movie.cast.join(", ")}.
-        </p>
+        <MovieClue
+          clueLabel="Cast:"
+          clueContent={movie.cast.join(", ")}
+          isHidden={blurLevel > 4}
+        />
       )}
 
       {movie.director && (
-        <p>
-          <span>Director: </span> {movie.director}.
-        </p>
+        <MovieClue
+          clueLabel="Director:"
+          clueContent={movie.director}
+          isHidden={blurLevel > 3}
+        />
       )}
 
       {movie.overview && (
-        <p>
-          <span>Synopsis: </span>
-          {movie.overview}
-        </p>
+        <MovieClue
+          clueLabel="Synopsis:"
+          clueContent={movie.overview}
+          isHidden={blurLevel > 2}
+        />
       )}
 
-      <span>Financials:</span>
       {((movie.budget ?? 0) > 0 || (movie.revenue ?? 0) > 0) && (
-        <p>
-          {(movie.budget ?? 0) > 0 &&
-            `Budget: $${(movie.budget ?? 0).toLocaleString()}`}
-          {(movie.budget ?? 0) > 0 && (movie.revenue ?? 0) > 0 && " | "}
-          {(movie.revenue ?? 0) > 0 &&
-            `Box Office: $${(movie.revenue ?? 0).toLocaleString()}`}
-        </p>
+        <MovieClue
+          clueLabel="Financials:"
+          clueContent={[
+            (movie.budget ?? 0) > 0 &&
+              `Budget: $${(movie.budget ?? 0).toLocaleString()}`,
+            (movie.budget ?? 0) > 0 && (movie.revenue ?? 0) > 0 && " | ",
+            (movie.revenue ?? 0) > 0 &&
+              `Box Office: $${(movie.revenue ?? 0).toLocaleString()}`,
+          ]
+            .filter(Boolean)
+            .join("")}
+          isHidden={blurLevel > 1}
+        />
       )}
     </div>
   );

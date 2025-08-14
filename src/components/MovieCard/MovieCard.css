@@ -1,15 +1,51 @@
-.poster-blur-level-5 { filter: blur(50px); clip-path: inset(0 round 4px); }
-.poster-blur-level-4 { filter: blur(40px); clip-path: inset(0 round 4px); }
-.poster-blur-level-3 { filter: blur(30px); clip-path: inset(0 round 4px); }
-.poster-blur-level-2 { filter: blur(20px); clip-path: inset(0 round 4px); }
-.poster-blur-level-1 { filter: blur(10px); clip-path: inset(0 round 4px); }
-.poster-blur-level-0 { filter: blur(0px); clip-path: inset(0 round 4px); }
+.poster-blur-level-5 {
+  filter: blur(50px);
+  clip-path: inset(0 round 4px);
+  will-change: filter;
+}
+
+.poster-blur-level-4 {
+  filter: blur(40px);
+  clip-path: inset(0 round 4px);
+  will-change: filter;
+}
+
+.poster-blur-level-3 {
+  filter: blur(30px);
+  clip-path: inset(0 round 4px);
+  will-change: filter;
+}
+
+.poster-blur-level-2 {
+  filter: blur(20px);
+  clip-path: inset(0 round 4px);
+  will-change: filter;
+}
+
+.poster-blur-level-1 {
+  filter: blur(10px);
+  clip-path: inset(0 round 4px);
+  will-change: filter;
+}
+
+.poster-blur-level-0 {
+  filter: blur(0px);
+  clip-path: inset(0 round 4px);
+  will-change: filter;
+}
 
 /* smooth transitions */
-.poster-blur-level-4, .poster-blur-level-3, .poster-blur-level-2, .poster-blur-level-1, .poster-blur-level-0 {
+.poster-blur-level-4,
+.poster-blur-level-3,
+.poster-blur-level-2,
+.poster-blur-level-1,
+.poster-blur-level-0 {
   transition: filter 0.3s ease-in-out;
 }
 
 .poster-blur-level-5 {
-  transition: none; /* No transition when resetting to 5th level */
+  transition: none;
+  /* No transition when resetting to 5th level */
 }
+
+
