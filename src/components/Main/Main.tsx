@@ -116,14 +116,15 @@ export default function Main() {
 
   return (
     <main>
-      <h1>Welcome to MovieGuessr!</h1>
-      <p>Get ready to test your movie knowledge.</p>
-      <p>Loaded {movies.length} movies!</p>
-      <p>Used movies: {usedMovies.length}</p>
+      <p>
+        Guess the movie based on the clues provided. You can unblur further
+        clues and the poster by clicking the button below. Good luck!
+      </p>
 
       {currentMovie && <MovieCard movie={currentMovie} blurLevel={blurLevel} />}
 
-      <GuessingField onSubmit={checkGuess} />
+      {/* Hide guessing field if user has given up or guessed correctly */}
+      {blurLevel > 0 && <GuessingField onSubmit={checkGuess} />}
 
       <div className="game-control-buttons">
         {blurLevel > 0 ? (

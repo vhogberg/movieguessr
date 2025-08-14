@@ -25,21 +25,23 @@ export default function MovieCard({
         />
       )}
 
-      {movie.vote_average !== undefined && (
-        <MovieClue
-          clueLabel="Rating (TMDb):"
-          clueContent={`${movie.vote_average.toFixed(1)}/10`}
-          isHidden={false} // Always show rating
-        />
-      )}
+      <div className="rating-and-date">
+        {movie.vote_average !== undefined && (
+          <MovieClue
+            clueLabel="Rating (TMDb):"
+            clueContent={`${movie.vote_average.toFixed(1)}/10`}
+            isHidden={false} // Always show rating
+          />
+        )}
 
-      {movie.release_date && (
-        <MovieClue
-          clueLabel="Release Date:"
-          clueContent={new Date(movie.release_date).toLocaleDateString()}
-          isHidden={false} // Always show release date
-        />
-      )}
+        {movie.release_date && (
+          <MovieClue
+            clueLabel="Release Date:"
+            clueContent={new Date(movie.release_date).toLocaleDateString()}
+            isHidden={false} // Always show release date
+          />
+        )}
+      </div>
 
       {movie.cast != undefined && (
         <MovieClue

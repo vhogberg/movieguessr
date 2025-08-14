@@ -48,4 +48,10 @@
   /* No transition when resetting to 5th level */
 }
 
-
+.rating-and-date {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: -1rem 0;
+  padding: 0;
+}

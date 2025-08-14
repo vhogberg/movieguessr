@@ -8,7 +8,7 @@ interface MovieClueProps {
 
 export default function MovieClue({ clueLabel, clueContent, isHidden = true }: MovieClueProps) {
     return (
-        <p>
+        <p className="movie-clue">
             <span className="movie-clue-label">
                 {clueLabel}
             </span>
