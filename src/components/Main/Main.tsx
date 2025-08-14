@@ -83,22 +83,39 @@ export default function Main() {
       <GuessingField onSubmit={checkGuess} />
 
       <div className="game-control-buttons">
-        <button onClick={() => setBlurLevel(Math.max(1, blurLevel - 1))}>
-          Reveal Clue
-        </button>
+        {blurLevel > 0 ? (
+          <>
+            <button onClick={() => setBlurLevel(Math.max(1, blurLevel - 1))}>
+              Reveal Clue
+            </button>
 
-        <button
-          onClick={() => {
-            usedMovies.push(currentMovie);
-            setUsedMovies([...usedMovies]);
-            setCurrentIndex((prev) =>
-              prev + 1 < movies.length ? prev + 1 : 0
-            );
-            setBlurLevel(5); // reset blur level for the next movie
-          }}
-        >
-          Skip Movie
-        </button>
+            <button
+              onClick={() => {
+                usedMovies.push(currentMovie);
+                setUsedMovies([...usedMovies]);
+                setCurrentIndex((prev) =>
+                  prev + 1 < movies.length ? prev + 1 : 0
+                );
+                setBlurLevel(5); // reset blur level for the next movie
+              }}
+            >
+              Skip Movie
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => {
+              usedMovies.push(currentMovie);
+              setUsedMovies([...usedMovies]);
+              setCurrentIndex((prev) =>
+                prev + 1 < movies.length ? prev + 1 : 0
+              );
+              setBlurLevel(5); // reset blur level for the next movie
+            }}
+          >
+            Next Movie
+          </button>
+        )}
       </div>
     </main>
   );
