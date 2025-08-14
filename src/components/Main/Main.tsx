@@ -50,6 +50,18 @@ export default function Main() {
 
   const [blurLevel, setBlurLevel] = useState(5);
 
+  function checkGuess(guess: string) {
+    if (
+      guess.trim().toLowerCase() === currentMovie.title.toLowerCase() ||
+      guess.trim().toLowerCase() === currentMovie.original_title.toLowerCase()
+    ) {
+      alert("Correct!");
+      setBlurLevel(0);
+    } else {
+      alert("Wrong!");
+    }
+  }
+
   if (loading) {
     return (
       <main>
@@ -68,7 +80,7 @@ export default function Main() {
 
       {currentMovie && <MovieCard movie={currentMovie} blurLevel={blurLevel} />}
 
-      <GuessingField />
+      <GuessingField onSubmit={checkGuess} />
 
       <div className="game-control-buttons">
         <button onClick={() => setBlurLevel(Math.max(1, blurLevel - 1))}>

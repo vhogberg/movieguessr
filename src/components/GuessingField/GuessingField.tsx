@@ -1,15 +1,31 @@
+import { useRef } from "react";
 import "./GuessingField.css";
 
-export default function GuessingField() {
+interface GuessingFieldProps {
+  onSubmit: (guess: string) => void;
+}
+
+export default function GuessingField({ onSubmit }: GuessingFieldProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault(); // stop page reload
+    if (inputRef.current) {
+      onSubmit(inputRef.current.value);
+      inputRef.current.value = ""; // clear after submit
+    }
+  }
+
   return (
-    <div className="guessing-field">
+    <form className="guessing-field" onSubmit={handleSubmit}>
       <input
+        ref={inputRef}
         type="text"
         placeholder="Type here..."
         className="text-field"
         aria-label="Text input field"
       />
-      <button>
+      <button type="submit" className="guess-button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -20,12 +36,11 @@ export default function GuessingField() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="lucide lucide-arrow-right-icon lucide-arrow-right"
         >
           <path d="M5 12h14" />
           <path d="m12 5 7 7-7 7" />
         </svg>
       </button>
-    </div>
+    </form>
   );
 }
