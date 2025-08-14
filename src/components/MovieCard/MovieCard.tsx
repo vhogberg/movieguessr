@@ -17,71 +17,75 @@ export default function MovieCard({
         className={`poster-blur-level-${blurLevel}`}
       />
 
-      {movie.tagline && (
-        <MovieClue
-          clueLabel="Tagline:"
-          clueContent={movie.tagline}
-          isHidden={false} // Always show tagline
-        />
-      )}
-
-      <div className="rating-and-date">
-        {movie.vote_average !== undefined && (
+      <div className="movie-details">
+        {movie.tagline && (
           <MovieClue
-            clueLabel="Rating (TMDb):"
-            clueContent={`${movie.vote_average.toFixed(1)}/10`}
-            isHidden={false} // Always show rating
+            clueLabel="Tagline:"
+            clueContent={movie.tagline}
+            isHidden={false} // Always show tagline
           />
         )}
 
-        {movie.release_date && (
+        <div className="rating-and-date">
+          {movie.vote_average !== undefined && (
+            <MovieClue
+              clueLabel="Rating (TMDb):"
+              clueContent={`${movie.vote_average.toFixed(1)}/10`}
+              isHidden={false} // Always show rating
+            />
+          )}
+
+          {movie.release_date && (
+            <MovieClue
+              clueLabel="Release Date:"
+              clueContent={new Date(movie.release_date)
+                .getFullYear()
+                .toString()}
+              isHidden={false} // Always show release date
+            />
+          )}
+        </div>
+
+        {movie.cast != undefined && (
           <MovieClue
-            clueLabel="Release Date:"
-            clueContent={new Date(movie.release_date).toLocaleDateString()}
-            isHidden={false} // Always show release date
+            clueLabel="Cast:"
+            clueContent={movie.cast.join(", ")}
+            isHidden={blurLevel > 4}
+          />
+        )}
+
+        {movie.director && (
+          <MovieClue
+            clueLabel="Director:"
+            clueContent={movie.director}
+            isHidden={blurLevel > 3}
+          />
+        )}
+
+        {movie.overview && (
+          <MovieClue
+            clueLabel="Synopsis:"
+            clueContent={movie.overview}
+            isHidden={blurLevel > 2}
+          />
+        )}
+
+        {((movie.budget ?? 0) > 0 || (movie.revenue ?? 0) > 0) && (
+          <MovieClue
+            clueLabel="Financials:"
+            clueContent={[
+              (movie.budget ?? 0) > 0 &&
+                `Budget: $${(movie.budget ?? 0).toLocaleString()}`,
+              (movie.budget ?? 0) > 0 && (movie.revenue ?? 0) > 0 && " | ",
+              (movie.revenue ?? 0) > 0 &&
+                `Box Office: $${(movie.revenue ?? 0).toLocaleString()}`,
+            ]
+              .filter(Boolean)
+              .join("")}
+            isHidden={blurLevel > 1}
           />
         )}
       </div>
-
-      {movie.cast != undefined && (
-        <MovieClue
-          clueLabel="Cast:"
-          clueContent={movie.cast.join(", ")}
-          isHidden={blurLevel > 4}
-        />
-      )}
-
-      {movie.director && (
-        <MovieClue
-          clueLabel="Director:"
-          clueContent={movie.director}
-          isHidden={blurLevel > 3}
-        />
-      )}
-
-      {movie.overview && (
-        <MovieClue
-          clueLabel="Synopsis:"
-          clueContent={movie.overview}
-          isHidden={blurLevel > 2}
-        />
-      )}
-
-      {((movie.budget ?? 0) > 0 || (movie.revenue ?? 0) > 0) && (
-        <MovieClue
-          clueLabel="Financials:"
-          clueContent={[
-            (movie.budget ?? 0) > 0 &&
-              `Budget: $${(movie.budget ?? 0).toLocaleString()}`,
-            (movie.budget ?? 0) > 0 && (movie.revenue ?? 0) > 0 && " | ",
-            (movie.revenue ?? 0) > 0 &&
-              `Box Office: $${(movie.revenue ?? 0).toLocaleString()}`,
-          ]
-            .filter(Boolean)
-            .join("")}
-          isHidden={blurLevel > 1}
-        />
-      )}
     </div>
   );
 }
