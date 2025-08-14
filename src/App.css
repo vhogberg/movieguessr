@@ -9,8 +9,3 @@
   position: relative;
   min-height: 100vh;
 }
-
-img {
-  max-width: 300px;
-  height: auto;
-}

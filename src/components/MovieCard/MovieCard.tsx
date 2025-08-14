@@ -14,7 +14,7 @@ export default function MovieCard({
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={`${movie.title} poster`}
-        className={`poster-blur-level-${blurLevel}`}
+        className={`poster poster-blur-level-${blurLevel}`}
       />
 
       <div className="movie-details">

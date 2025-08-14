@@ -1,3 +1,8 @@
+.poster {
+  max-width: 250px;
+  height: auto;
+}
+
 .poster-blur-level-5 {
   filter: blur(50px);
   clip-path: inset(0 round 4px);
@@ -51,7 +56,6 @@
 .rating-and-date {
   display: flex;
   gap: 1rem;
-  margin: -1rem 0;
   padding: 0;
 }
 
@@ -60,7 +64,11 @@
   flex-direction: column;
   align-items: left;
   text-align: left;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.movie-details p {
+  margin: 0.5rem 0;
 }
 
 @media screen and (width > 500px) {
@@ -76,6 +84,6 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.4rem;
   }
 }
