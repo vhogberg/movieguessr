@@ -29,7 +29,7 @@ export default function MovieCard({
         <div className="rating-and-date">
           {movie.vote_average !== undefined && (
             <MovieClue
-              clueLabel="Rating (TMDb):"
+              clueLabel="Rating (TMDB):"
               clueContent={`${movie.vote_average.toFixed(1)}/10`}
               isHidden={false} // Always show rating
             />

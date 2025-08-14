@@ -1,4 +1,17 @@
 footer {
-    margin-top: 6rem;
+    margin-top: 2rem;
     color: rgb(196, 196, 196);
+}
+
+.TMDB-attribution {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-bottom: -1.5rem;
+}
+
+.TMDB-logo {
+    width: 17px;
+    height: auto;
+    margin-bottom: -1px;
 }
