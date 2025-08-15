@@ -8,44 +8,11 @@ interface GuessingFieldProps {
 export default function GuessingField({ onSubmit }: GuessingFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Function to reset viewport zoom
-  const resetZoom = () => {
-    const viewport = document.querySelector('meta[name="viewport"]');
-    if (viewport) {
-      viewport.setAttribute(
-        "content",
-        "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      );
-      // Force reflow to ensure zoom reset
-      document.body.style.zoom = "1";
-    }
-  };
-
-  // Handle form submission (button click)
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault(); // Stop page reload
+    e.preventDefault(); // stop page reload
     if (inputRef.current) {
-      const guess = inputRef.current.value.trim();
-      if (guess) {
-        onSubmit(guess);
-        inputRef.current.value = ""; // Clear after submit
-        resetZoom(); // Reset zoom after submission
-      }
-    }
-  }
-
-  // Handle Enter key press
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter") {
-      e.preventDefault(); // Prevent form submission if already handled
-      if (inputRef.current) {
-        const guess = inputRef.current.value.trim();
-        if (guess) {
-          onSubmit(guess);
-          inputRef.current.value = ""; // Clear after submit
-          resetZoom(); // Reset zoom after Enter
-        }
-      }
+      onSubmit(inputRef.current.value);
+      inputRef.current.value = ""; // clear after submit
     }
   }
 
@@ -57,7 +24,6 @@ export default function GuessingField({ onSubmit }: GuessingFieldProps) {
         placeholder="Type here..."
         className="text-field"
         aria-label="Text input field"
-        onKeyDown={handleKeyDown}
       />
       <button type="submit" className="guess-button">
         <svg
