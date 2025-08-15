@@ -13,6 +13,9 @@ export default function Header({ gameStarted }: HeaderProps) {
         alt="logo"
         id="logo"
         className={gameStarted ? "logo-small" : ""}
+        onClick={() => {
+          window.location.reload();
+        }}
       />
     </header>
   );

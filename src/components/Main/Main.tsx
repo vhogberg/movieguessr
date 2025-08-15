@@ -114,41 +114,42 @@ export default function Main() {
 
   return (
     <main>
-
       {currentMovie && <MovieCard movie={currentMovie} blurLevel={blurLevel} />}
 
-      {/* Hide guessing field if user has given up or guessed correctly */}
-      {blurLevel > 0 && <GuessingField onSubmit={checkGuess} />}
+      <div className="game-controls">
+        {/* Hide guessing field if user has given up or guessed correctly */}
+        {blurLevel > 0 && <GuessingField onSubmit={checkGuess} />}
 
-      <div className="game-control-buttons">
-        {blurLevel > 0 ? (
-          <>
-            <button onClick={() => setBlurLevel(Math.max(1, blurLevel - 1))}>
-              Reveal Clue
-            </button>
+        <div className="game-control-buttons">
+          {blurLevel > 0 ? (
+            <>
+              <button onClick={() => setBlurLevel(Math.max(1, blurLevel - 1))}>
+                Reveal Clue
+              </button>
 
+              <button
+                onClick={() => {
+                  setBlurLevel(0);
+                }}
+              >
+                Give Up
+              </button>
+            </>
+          ) : (
             <button
               onClick={() => {
-                setBlurLevel(0);
+                usedMovies.push(currentMovie);
+                setUsedMovies([...usedMovies]);
+                setCurrentIndex((prev) =>
+                  prev + 1 < movies.length ? prev + 1 : 0
+                );
+                setBlurLevel(5); // reset blur level for the next movie
               }}
             >
-              Give Up
+              Next Movie
             </button>
-          </>
-        ) : (
-          <button
-            onClick={() => {
-              usedMovies.push(currentMovie);
-              setUsedMovies([...usedMovies]);
-              setCurrentIndex((prev) =>
-                prev + 1 < movies.length ? prev + 1 : 0
-              );
-              setBlurLevel(5); // reset blur level for the next movie
-            }}
-          >
-            Next Movie
-          </button>
-        )}
+          )}
+        </div>
       </div>
     </main>
   );

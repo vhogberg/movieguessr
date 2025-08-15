@@ -1,7 +1,14 @@
 .guessing-field {
   position: relative;
   display: inline-block;
-  max-width: 300px;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+@media screen and (width > 500px) {
+  .guessing-field {
+    width: 300px;
+  }
 }
 
 .text-field {
