@@ -49,14 +49,14 @@ export default function MovieCard({
           <MovieClue
             clueLabel="Director:"
             clueContent={movie.director}
-            isHidden={blurLevel > 3}
+            isHidden={blurLevel > 4}
           />
         )}
         {movie.cast != undefined && (
           <MovieClue
             clueLabel="Cast:"
             clueContent={movie.cast.join(", ")}
-            isHidden={blurLevel > 4}
+            isHidden={blurLevel > 3}
           />
         )}
 
