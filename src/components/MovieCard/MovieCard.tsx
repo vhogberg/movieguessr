@@ -26,7 +26,7 @@ export default function MovieCard({
           />
         )}
 
-        <div className="rating-and-date">
+
           {movie.vote_average !== undefined && (
             <MovieClue
               clueLabel="Rating (TMDB):"
@@ -44,21 +44,19 @@ export default function MovieCard({
               isHidden={false} // Always show release date
             />
           )}
-        </div>
-
-        {movie.cast != undefined && (
-          <MovieClue
-            clueLabel="Cast:"
-            clueContent={movie.cast.join(", ")}
-            isHidden={blurLevel > 4}
-          />
-        )}
 
         {movie.director && (
           <MovieClue
             clueLabel="Director:"
             clueContent={movie.director}
             isHidden={blurLevel > 3}
+          />
+        )}
+        {movie.cast != undefined && (
+          <MovieClue
+            clueLabel="Cast:"
+            clueContent={movie.cast.join(", ")}
+            isHidden={blurLevel > 4}
           />
         )}
 
