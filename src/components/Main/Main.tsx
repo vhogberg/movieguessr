@@ -101,14 +101,12 @@ export default function Main() {
         }
       }
     }
-
     return matrix[b.length][a.length];
   }
 
   if (loading) {
     return (
       <main>
-        <h1>Welcome to MovieGuessr!</h1>
         <p>Loading movies...</p>
       </main>
     );
@@ -116,10 +114,6 @@ export default function Main() {
 
   return (
     <main>
-      <p>
-        Guess the movie based on the clues provided. You can unblur further
-        clues and the poster by clicking the button below. Good luck!
-      </p>
 
       {currentMovie && <MovieCard movie={currentMovie} blurLevel={blurLevel} />}
 

@@ -17,7 +17,7 @@ export default function Footer() {
         but is not endorsed or certified by TMDB.
       </p>
       <img src={TMDBLogo} alt="TMDB-logo" className="TMDB-logo" />
-    
+
       <p>© 2025 MovieGuessr. All rights reserved.</p>
     </footer>
   );

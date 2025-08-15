@@ -2,11 +2,16 @@
   max-width: 250px;
   height: auto;
 
-  pointer-events: none;      /* disables all mouse interactions */
-  user-select: none;         /* prevents text selection on drag */
-  -webkit-user-drag: none;   /* prevents dragging on WebKit browsers */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE/Edge */
+  pointer-events: none;
+  /* disables all mouse interactions */
+  user-select: none;
+  /* prevents text selection on drag */
+  -webkit-user-drag: none;
+  /* prevents dragging on WebKit browsers */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE/Edge */
 }
 
 .poster-blur-level-5 {
@@ -82,7 +87,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
   }
 
   .movie-details {
