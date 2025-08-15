@@ -6,7 +6,6 @@ header {
 }
 
 #logo {
-    width: 250px;
     transition: all 0.3s ease;
 }
 
@@ -23,7 +22,7 @@ header {
 }
 
 .header-started #logo {
-    width: 100px;
+    width: 120px;
     /* smaller size only for mobile */
 }
 

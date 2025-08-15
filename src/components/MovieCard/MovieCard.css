@@ -8,7 +8,7 @@
   max-width: 120px; /* Smaller for mobile */
   height: auto;
   float: right; /* Position poster in top-right */
-  margin: 0.9rem 0 0.2rem 0.5rem; /* Space below and to the left */
+  margin: 0.8rem 0 0.2rem 0.5rem; /* Space below and to the left */
 
   /* So user can't cheat by right-clicking or dragging poster */
   pointer-events: none;
