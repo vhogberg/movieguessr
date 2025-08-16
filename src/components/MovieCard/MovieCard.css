@@ -6,12 +6,12 @@
 }
 
 .poster {
-  max-width: 120px;
+  max-width: 135px;
   /* Smaller for mobile */
   height: auto;
   float: right;
   /* Position poster in top-right */
-  margin: 0.8rem 0 0.2rem 0.5rem;
+  margin: -1.9rem 0 0.2rem 0.6rem;
   /* Space below and to the left */
 
   /* So user can't cheat by right-clicking or dragging poster */
@@ -78,12 +78,18 @@
   margin: 0.5rem 0;
 }
 
+@media screen and (width > 350px) {
+  .poster {
+    max-width: 150px;
+  }
+}
+
 /* Desktop layout (> 500px) */
 @media screen and (min-width: 501px) {
   .poster {
     max-width: 250px;
     /* Larger for desktop */
-    margin-left: 1rem;
+    margin: 0.9rem 0 0.3rem 1rem;
   }
 }
 
