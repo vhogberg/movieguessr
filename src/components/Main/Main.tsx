@@ -50,12 +50,19 @@ export default function Main() {
 
   const [blurLevel, setBlurLevel] = useState(5);
 
+  const [guessStatus, setGuessStatus] = useState<"correct" | "wrong" | "idle">(
+    "idle"
+  );
+
   function checkGuess(guess: string) {
     if (isCloseMatch(guess, currentMovie.title)) {
-      alert("Correct!");
+      setGuessStatus("correct");
+
       setBlurLevel(0);
     } else {
-      alert("Wrong!");
+      setGuessStatus("wrong");
+      // Reset status back to idle after animation finishes
+      setTimeout(() => setGuessStatus("idle"), 600);
     }
   }
 
@@ -118,7 +125,11 @@ export default function Main() {
 
       <div className="game-controls">
         {/* Hide guessing field if user has given up or guessed correctly */}
-        {blurLevel > 0 && <GuessingField onSubmit={checkGuess} />}
+        {blurLevel > 0 && (
+          <GuessingField onSubmit={checkGuess} status={guessStatus} />
+        )}
+
+        {guessStatus === "correct" && <div className="toast">Correct 🎉</div>}
 
         <div className="game-control-buttons">
           {blurLevel > 0 ? (
@@ -143,7 +154,8 @@ export default function Main() {
                 setCurrentIndex((prev) =>
                   prev + 1 < movies.length ? prev + 1 : 0
                 );
-                setBlurLevel(5); // reset blur level for the next movie
+                setBlurLevel(5);
+                setGuessStatus("idle"); // reset for next round
               }}
             >
               Next Movie

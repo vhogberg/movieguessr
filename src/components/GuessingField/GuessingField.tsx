@@ -3,9 +3,10 @@ import "./GuessingField.css";
 
 interface GuessingFieldProps {
   onSubmit: (guess: string) => void;
+  status?: "idle" | "correct" | "wrong";
 }
 
-export default function GuessingField({ onSubmit }: GuessingFieldProps) {
+export default function GuessingField({ onSubmit, status = "idle" }: GuessingFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: React.FormEvent) {
@@ -22,7 +23,7 @@ export default function GuessingField({ onSubmit }: GuessingFieldProps) {
         ref={inputRef}
         type="text"
         placeholder="Type here..."
-        className="text-field"
+        className={`text-field ${status}`}
         aria-label="Text input field"
       />
       <button type="submit" className="guess-button">

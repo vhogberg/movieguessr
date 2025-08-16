@@ -20,6 +20,45 @@
     /* Buttons share available width equally */
 }
 
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8); /* start slightly smaller */
+  background: #277945;  
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 4px rgba(37, 173, 87, 0.6); /* subtle glow */
+  z-index: 1000;
+  text-align: center;
+  animation: toastPop 3s forwards;
+}
+
+@keyframes toastPop {
+  0% { 
+    opacity: 0; 
+    transform: translate(-50%, -55%) scale(0.8); 
+  }
+  10% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.05); /* slight overshoot for pop */
+  }
+  20% { 
+    transform: translate(-50%, -50%) scale(1); /* settle to normal size */
+  }
+  80% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translate(-50%, -55%) scale(0.8); 
+  }
+}
+
+
 /* Desktop layout (> 500px) */
 @media screen and (min-width: 501px) {
     .game-control-buttons {
