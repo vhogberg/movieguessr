@@ -5,12 +5,6 @@
   width: 100%;
 }
 
-@media screen and (width > 500px) {
-  .guessing-field {
-    width: 300px;
-  }
-}
-
 .text-field {
   width: 100%;
   padding: 12px 50px 12px 16px;

@@ -18,7 +18,7 @@ function App() {
           <p>
             Test your movie knowledge! Each round starts with a blurred poster
             and some clues. Click <strong>Reveal Clue</strong> to sharpen the
-            poster and get more hints, but you'll earn fewer points!
+            poster and get more hints!
           </p>
           <p>
             Think you know it? Type your guess in the textfield. Click{" "}

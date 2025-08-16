@@ -8,6 +8,7 @@ header {
 #logo {
     width: 250px;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .header-menu {
