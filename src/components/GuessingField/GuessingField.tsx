@@ -26,7 +26,7 @@ export default function GuessingField({ onSubmit, status = "idle" }: GuessingFie
         className={`text-field ${status}`}
         aria-label="Text input field"
       />
-      <button type="submit" className="guess-button">
+      <button type="submit" className={`guess-button ${status}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
