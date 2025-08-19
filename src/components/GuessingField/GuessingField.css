@@ -7,7 +7,8 @@
 
 .text-field {
   width: 100%;
-  padding: 12px 50px 12px 16px; /* extra space for button */
+  padding: 12px 50px 12px 16px;
+  /* extra space for button */
   border: 1px solid #e1e5e9;
   border-radius: 8px;
   font-size: 16px;
@@ -16,23 +17,47 @@
 }
 
 .text-field:focus {
-  border-color: #ffffff;
+  outline: none;
+  /* remove iOS/Android default glow */
+  box-shadow: none;
+  /* remove extra focus halo */
+  border-color: #e1e5e9;
+
+  box-shadow: 0 0 0 1px #ffffff;
+  /* simulate extra 1px focus ring */
 }
 
 /* WRONG GUESS */
 .text-field.wrong {
   animation: shake 0.5s ease;
   border-color: #ce2527;
-  box-shadow: 0 0 6px rgba(239,68,68,0.5);
+  box-shadow: 0 0 0 2px #ce2527;
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-3px); }
-  40% { transform: translateX(3px); }
-  60% { transform: translateX(-2px); }
-  80% { transform: translateX(2px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-3px);
+  }
+
+  40% {
+    transform: translateX(3px);
+  }
+
+  60% {
+    transform: translateX(-2px);
+  }
+
+  80% {
+    transform: translateX(2px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .text-field::placeholder {
