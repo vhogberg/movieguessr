@@ -1,4 +1,4 @@
-# MovieGuessr🎬
+# MovieGuessr 🎬
 
 Welcome to **MovieGuessr**, a fun and interactive movie guessing game!  
 Test your film knowledge by identifying movies based on **blurred posters** and **clues** powered by the TMDB API.  
